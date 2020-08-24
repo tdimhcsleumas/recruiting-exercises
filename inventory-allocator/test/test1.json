@@ -1,0 +1,20 @@
+{
+    "order": {
+        "apple": 1
+    },
+    "warehouse": [
+        {
+            "name": "owd",
+            "inventory": {
+                "apple": 1
+            }
+        }
+    ],
+    "shipment": [
+        {
+            "owd": {
+                "apple": 1
+            }
+        }
+    ]
+}
