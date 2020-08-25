@@ -1,0 +1,9 @@
+{
+    "order": {
+        "apple": 15,
+        "banana": 5,
+        "orange": 5
+    },
+    "warehouse": [],
+    "shipment": []
+}

@@ -1,0 +1,44 @@
+{
+    "order": {
+        "apple": 15,
+        "banana": 5,
+        "orange": 5
+    },
+    "warehouse": [
+        {
+            "name": "owd",
+            "inventory": {
+                "apple": 10,
+                "orange": 10
+            }
+        },
+        {
+            "name": "dm",
+            "inventory": {
+                "apple": 5,
+                "banana": 5,
+                "orange": 10
+            }
+        },
+        {
+            "name": "ow",
+            "inventory": {
+                "apple": 5
+            }
+        }
+    ],
+    "shipment": [
+        {
+            "owd": {
+                "apple": 10,
+                "orange": 5 
+            }
+        },
+        {
+            "dm": {
+                "apple": 5,
+                "banana": 5
+            }
+        }
+    ]
+}
