@@ -15,11 +15,27 @@ class InventoryItem(dict):
         self[self.kTotal] += quantity
         self[self.kWarehouse][name] = quantity
 
+    def getTotal(self):
+        return self.get(self.kTotal)
+
+    def getWarehouses(self):
+        return self.get(self.kWarehouse)
+
+class WarehouseOrder(dict):
+    def addOrder(self, warehouse: str, item: str, amount: int):
+        if self.get(warehouse) is None:
+            self[warehouse] = dict()
+        self[warehouse][item] = amount
+        
+    def toList(self) -> list:
+        return [{k: v} for k, v in self.items()]
+
 class InventoryAllocator():
     
     def __init__(self, order: dict, warehouses: list):
         self.order = order
         self.warehouses = warehouses
+        self.warehouseOrders = WarehouseOrder()
         self.items = dict()
 
     def generateItems(self):
@@ -32,8 +48,27 @@ class InventoryAllocator():
                 
                 self.items.get(item).addWarehouse(name, quantity)
         
-    def getItems(self) -> dict:
-        return self.items
-
     def process(self) -> list:
-        return list() 
+        error = None
+        shipment = WarehouseOrder()
+
+        for item, quantity in self.order.items():
+            if self.items.get(item).getTotal() < quantity:
+                error = "not enough stock for {}".format(item)
+                break;
+            
+            for warehouse, inventory in self.items.get(item).getWarehouses().items():
+                if quantity <= 0:
+                    break
+                elif quantity <= inventory:
+                    shipment.addOrder(warehouse, item, quantity)
+                    quantity -= quantity
+                else:
+                    shipment.addOrder(warehouse, item, inventory)
+                    quantity -= inventory
+
+        if error is not None:
+            print(error)
+            return list()
+
+        return shipment.toList()
