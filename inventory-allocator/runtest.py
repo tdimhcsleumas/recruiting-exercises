@@ -19,7 +19,6 @@ def run():
         print("json:\n{}\n".format(data))
 
         ia = InventoryAllocator(data["order"], data["warehouse"])
-        ia.generateItems()
         shipment = ia.process() 
 
         if shipment == data["shipment"]:
