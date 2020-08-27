@@ -2,7 +2,6 @@
 # Samuel Schmidt 2020-08-24
 
 class InventoryAllocator():
-
     
     """ just a single function 
     """
@@ -31,18 +30,17 @@ class InventoryAllocator():
             for item, amount in order.items():
                 inventory = best['inventory'][item]
 
-                if inventory == 0:
-                    continue
+                if inventory != 0:
 
-                if shipment.get(best['name']) is None:
-                    shipment[best['name']] = dict()
+                    if shipment.get(best['name']) is None:
+                        shipment[best['name']] = dict()
 
-                if amount <= inventory: # order is satisfied
-                    shipment[best['name']][item] = amount
-                    removeList.append(item)
-                else:
-                    shipment[best['name']][item] = inventory
-                    order[item] -= inventory
+                    if amount <= inventory: # order is satisfied
+                        shipment[best['name']][item] = amount
+                        removeList.append(item)
+                    else:
+                        shipment[best['name']][item] = inventory
+                        order[item] -= inventory
 
             for i in removeList: order.pop(i)
             warehouses.remove(best)
