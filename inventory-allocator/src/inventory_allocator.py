@@ -1,8 +1,6 @@
 # inventory-allocator.py
 # Samuel Schmidt 2020-08-24
 
-from copy import deepcopy
-
 class InventoryAllocator():
 
     """ just a single function 
