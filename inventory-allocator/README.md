@@ -52,3 +52,9 @@ We'll evaluate your code via the following guidelines in no particular order:
 2. **Correctness**: is the solution correct and does it solve the problem
 1. **Test Code Quality**: Is the test code comperehensive and covering all cases.
 1. **Tool/Language mastery**: is the code using up to date syntax and techniques. 
+
+
+### To the evaluator
+
+Run the tests using `python3 runtest.py`
+I used python3 during the implementation without any packages, so it should be system-indepedent.

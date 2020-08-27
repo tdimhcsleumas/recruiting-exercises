@@ -31,6 +31,7 @@ def run():
             print("=========== Passed! ===========");
         else:
             print("=========== Failed! ===========\nExpected: {}\nGot: {}\n".format(data["shipment"], shipment)); 
+            print("===============================\n")
 
         input("press any key to continue...");
 
