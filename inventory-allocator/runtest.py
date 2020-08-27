@@ -4,6 +4,12 @@ import json
 
 testDir = "./test"
 
+def sameMembers(list_a: list, list_b: list) -> bool:
+    for entry in list_a:
+        if entry not in list_b:
+            return False
+    return True
+
 def run():
     tests = []
     for root, _, files in walk(testDir):
@@ -21,7 +27,7 @@ def run():
         ia = InventoryAllocator()
         shipment = ia.process(data["order"], data["warehouse"]) 
 
-        if shipment == data["shipment"]:
+        if sameMembers(shipment, data["shipment"]):
             print("=========== Passed! ===========");
         else:
             print("=========== Failed! ===========\nExpected: {}\nGot: {}\n".format(data["shipment"], shipment)); 
