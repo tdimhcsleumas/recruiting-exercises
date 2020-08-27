@@ -7,7 +7,7 @@ class InventoryAllocator():
     """
     def process(self, order: dict, warehouses: list) -> list:
         error = None
-        shipment = dict()
+        shipment = [] 
         rectifiedSum = lambda oValue, wValue: \
              sum([max(o - w, 0) for (o,w) in zip(oValue, wValue)])
 
@@ -26,26 +26,25 @@ class InventoryAllocator():
                 s(o.values(), w['inventory'].values()) + w['idx']
             )
             removeList = []
+            warehouseOrder = {best['name']: dict()} 
 
             for item, amount in order.items():
                 inventory = best['inventory'][item]
 
                 if inventory != 0:
 
-                    if shipment.get(best['name']) is None:
-                        shipment[best['name']] = dict()
-
                     if amount <= inventory: # order is satisfied
-                        shipment[best['name']][item] = amount
+                        warehouseOrder[best['name']][item] = amount
                         removeList.append(item)
                     else:
-                        shipment[best['name']][item] = inventory
+                        warehouseOrder[best['name']][item] = inventory
                         order[item] -= inventory
 
             for i in removeList: order.pop(i)
+
+            if len(warehouseOrder[best['name']]) > 0: shipment.append(warehouseOrder)
             warehouses.remove(best)
 
-        if len(order) != 0:
-            return list()
+        if len(order) != 0: return list()
 
-        return [{k: v} for k, v in shipment.items()]
+        return shipment 
