@@ -1,0 +1,27 @@
+{
+    "order": {
+        "apple": 15
+    },
+    "warehouse": [
+        {
+            "name": "owd",
+            "inventory": {
+                "apple": 5
+            }
+        },
+        {
+            "name": "om",
+            "inventory": {
+                "apple": 15
+            }
+        }
+    ],
+    "shipment": [
+        {
+            "om": {
+                "apple": 15
+            }
+        }
+    ]
+}
+

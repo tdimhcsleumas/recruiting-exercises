@@ -18,8 +18,8 @@ def run():
 
         print("json:\n{}\n".format(data))
 
-        ia = InventoryAllocator(data["order"], data["warehouse"])
-        shipment = ia.process() 
+        ia = InventoryAllocator()
+        shipment = ia.process(data["order"], data["warehouse"]) 
 
         if shipment == data["shipment"]:
             print("=========== Passed! ===========");

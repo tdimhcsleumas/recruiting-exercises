@@ -1,0 +1,37 @@
+{
+    "order": {
+        "orange": 30
+    },
+    "warehouse": [
+        {
+            "name": "owd",
+            "inventory": {
+                "orange": 5
+            }
+        },
+        {
+            "name": "om",
+            "inventory": {
+                "orange": 25
+            }
+        },
+        {
+            "name": "em",
+            "inventory": {
+                "orange": 10
+            }
+        }
+    ],
+    "shipment": [
+        {
+            "om": {
+                "orange": 25
+            }
+        },
+        {
+            "owd": {
+                "orange": 5
+            }
+        }
+    ]
+}
