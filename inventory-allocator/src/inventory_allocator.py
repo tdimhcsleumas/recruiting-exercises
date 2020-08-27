@@ -3,18 +3,14 @@
 
 class InventoryAllocator():
 
-    def sumDifferences(warehouse: dict, order: dict):
-        rect = lambda x, y: x - y if x > y else 0
-        wValue = warehouse['inventory'].values()
-        oValue = order.values()
-        return sum([rect(o,w) for (w,o) in zip(wValue, oValue)])
-
-
+    
     """ just a single function 
     """
     def process(self, order: dict, warehouses: list) -> list:
         error = None
         shipment = dict()
+        rectifiedSum = lambda oValue, wValue: \
+             sum([max(o - w, 0) for (o,w) in zip(oValue, wValue)])
 
         # assign an index to each of the warehouses for score calculation.
         # if an ordered item is not listed in the inventory, give it 0
@@ -27,8 +23,8 @@ class InventoryAllocator():
 
         while len(order) > 0 and len(warehouses) > 0:
             # finding the warehouse that is currently closest to completing our order
-            best = min(warehouses, key=lambda w, o=order, s=InventoryAllocator.sumDifferences: 
-                s(w, o) + w['idx']
+            best = min(warehouses, key=lambda w, o=order, s=rectifiedSum: 
+                s(o.values(), w['inventory'].values()) + w['idx']
             )
             removeList = []
 

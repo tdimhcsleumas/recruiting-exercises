@@ -1,6 +1,5 @@
 from src import InventoryAllocator
 from os import walk, path
-from sys import argv
 import json
 
 testDir = "./test"
@@ -11,33 +10,29 @@ def sameMembers(list_a: list, list_b: list) -> bool:
             return False
     return True
 
-def run(verbose=None):
+def run():
     tests = []
     for root, _, files in walk(testDir):
         tests.extend([path.join(root, name) for name in files])
 
     for test in tests:
+        print("=========== running test: {} ===========".format(test))
         data = dict()
 
         with open(test) as f:
             data = json.load(f)
 
+        print("json:\n{}\n".format(data))
+
         ia = InventoryAllocator()
         shipment = ia.process(data["order"], data["warehouse"]) 
-        passed = sameMembers(shipment, data["shipment"])
 
-        print("=========== Running test {} ===========".format(test))
-
-        if verbose:
-            print("json:\n{}\n".format(data))
-
-            if passed:
-                print("=========== Passed! ===========");
-        
-        if not passed:
+        if sameMembers(shipment, data["shipment"]):
+            print("=========== Passed! ===========");
+        else:
             print("=========== Failed! ===========\nExpected: {}\nGot: {}\n".format(data["shipment"], shipment)); 
 
+        input("press any key to continue...");
 
 if __name__ == "__main__":
-    option = argv[1] if len(argv) >= 2 else None
-    run(verbose=option == 'verbose')
+    run()
