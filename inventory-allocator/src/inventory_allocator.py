@@ -30,12 +30,11 @@ class InventoryAllocator():
             best = min(warehouses, key=lambda w, o=order, s=InventoryAllocator.sumDifferences: 
                 s(w, o) + w['idx']
             )
-            print(best)
             removeList = []
 
             for item, amount in order.items():
                 inventory = best['inventory'][item]
-                
+
                 if inventory == 0:
                     continue
 

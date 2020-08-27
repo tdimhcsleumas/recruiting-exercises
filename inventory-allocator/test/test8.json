@@ -22,12 +22,13 @@
     "shipment": [
         {
             "owd": {
-                "orange": 15
+                "orange": 15,
+                "apple": 5
             }
         },
         {
             "om": {
-                "apple": 15
+                "apple": 10
             }
         }
     ]

@@ -31,17 +31,15 @@
     "shipment": [
         {
             "owd": {
-                "orange": 15
+                "orange": 15,
+                "apple": 5,
+                "banana": 10
             }
         },
         {
             "om": {
-                "apple": 15
-            }
-        },
-        {
-            "em": {
-                "banana": 15
+                "apple": 10,
+                "banana": 5
             }
         }
     ]
