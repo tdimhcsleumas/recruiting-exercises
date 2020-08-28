@@ -1,13 +1,17 @@
-# inventory-allocator.py
+# inventory_allocator.py
 # Samuel Schmidt 2020-08-24
 
 class InventoryAllocator():
     
-    """ just a single function 
+    """ Originally made this entire class, but the task was updated halfway through
+        so it's confined to a single function
     """
     def process(self, order: dict, warehouses: list) -> list:
         error = None
-        shipment = [] 
+        shipment = []
+        
+        # using rectified sign to increase score only if the order amount is greater than the 
+        # warehouse stock
         rectifiedSum = lambda oValue, wValue: \
              sum([max(o - w, 0) for (o,w) in zip(oValue, wValue)])
 
@@ -21,7 +25,7 @@ class InventoryAllocator():
                     warehouses[i]['inventory'][item] = 0
 
         while len(order) > 0 and len(warehouses) > 0:
-            # finding the warehouse that is currently closest to completing our order
+            # find the warehouse that is currently closest to completing our order
             best = min(warehouses, key=lambda w, o=order, s=rectifiedSum: 
                 s(o.values(), w['inventory'].values()) + w['idx']
             )
